@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 14% 95%;
+  --foreground: 218 54% 35%;
+  --card: 210 16% 98%;
+  --card-foreground: 218 54% 35%;
+  --muted: 214 19% 89%;
+  --muted-foreground: 218 38% 45%;
+  --accent: 218 53% 38%;
+  --accent-foreground: 210 18% 97%;
+  --primary: 218 54% 35%;
+  --primary-foreground: 210 18% 97%;
+  --border: 218 45% 78%;
+  --input: 218 45% 78%;
+  --ring: 218 54% 35%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: #f0f2f3;
+  color: hsl(var(--foreground));
+}
+
+::selection {
+  background: #2d5ca2;
+  color: #f6f7f5;
+}
+
+.terminal-grid {
+  background-image:
+    linear-gradient(rgba(45, 92, 162, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 92, 162, 0.09) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.fabric-grid {
+  background:
+    linear-gradient(135deg, rgba(45, 92, 162, 0.08), transparent 45%),
+    repeating-linear-gradient(0deg, rgba(45, 92, 162, 0.05) 0 1px, transparent 1px 18px),
+    #edf0f1;
+}
+
+.brand-logo {
+  filter: brightness(0) saturate(100%) invert(32%) sepia(62%) saturate(1165%)
+    hue-rotate(185deg) brightness(88%) contrast(89%);
+}
+
+.brand-logo-invert {
+  filter: brightness(0) invert(1);
+}
+
+.scanline {
+  position: relative;
+}
+
+.scanline::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(45, 92, 162, 0.05),
+    transparent
+  );
+  background-size: 100% 7px;
+  mix-blend-mode: screen;
+}
