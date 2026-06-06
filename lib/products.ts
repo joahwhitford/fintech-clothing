@@ -58,8 +58,8 @@ export const products: Product[] = [
     slug: "psg-x-ftc",
     name: "PSG x FTC",
     collection: "Football",
-    price: "$79",
-    priceNum: 79,
+    price: "FREE",
+    priceNum: 0,
     tagline: "PSG x Fintech Collective",
     description:
       "The collab nobody asked for but everyone needed. Italian merino blend. Cut for founders who treat Sunday like an operating system.",
