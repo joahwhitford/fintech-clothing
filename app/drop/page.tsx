@@ -18,8 +18,8 @@ const singles = [
   {
     slug: "dont-fuck-it-up",
     name: "Don't Fuck It Up",
-    teePrice: 158,
-    hatPrice: 88,
+    teePrice: 89,
+    hatPrice: 29,
     teeImage: "/drop-dfiu.png",
     hatImage: "/drop-dfiu-hat.png",
     description: "One rule. No exceptions. 420gsm washed black heavyweight tee.",
@@ -28,8 +28,8 @@ const singles = [
   {
     slug: "never-give-up",
     name: "Don't Give Up",
-    teePrice: 148,
-    hatPrice: 88,
+    teePrice: 89,
+    hatPrice: 29,
     teeImage: "/drop-ngu.png",
     hatImage: "/drop-ngu-hat.png",
     description: "The only thing between you and the outcome. Garment-dyed, pre-shrunk, built to last.",
@@ -38,8 +38,8 @@ const singles = [
   {
     slug: "long-term-vision",
     name: "Long Term Vision",
-    teePrice: 168,
-    hatPrice: 88,
+    teePrice: 89,
+    hatPrice: 29,
     teeImage: "/drop-ltv.png",
     hatImage: "/drop-ltv-hat.png",
     description: "Everyone's optimizing for the quarter. You're building for the decade. Washed black boxy tee.",
@@ -48,8 +48,8 @@ const singles = [
   {
     slug: "great-things",
     name: "Great Things Don't Come Overnight",
-    teePrice: 178,
-    hatPrice: 88,
+    teePrice: 89,
+    hatPrice: 29,
     teeImage: "/drop-gtco.png",
     hatImage: "/drop-gtco-hat.png",
     description: "Patience is the edge nobody talks about. Italian fleece heavyweight tee.",
@@ -208,7 +208,7 @@ function HWBTSection({ onAdd }: { onAdd: (item: { slug: string; name: string; pr
         >
           <h2 className="font-display text-5xl text-[#f6f7f5] md:text-7xl">HWBT</h2>
           <span className="font-logo text-xs uppercase tracking-logo text-[#f6f7f5]/35">
-            4 tee colorways + hat — from $88
+            4 tee colorways + hat — from $29
           </span>
         </motion.div>
 
@@ -261,7 +261,7 @@ function HWBTSection({ onAdd }: { onAdd: (item: { slug: string; name: string; pr
                 className={`relative w-full overflow-hidden border transition ${active === 4 ? "border-[#f6f7f5]/60" : "border-[#f6f7f5]/10 opacity-50 hover:opacity-80"}`}
               >
                 <img src={hwbtVariants[4].image} alt="HWBT Hat" className="h-20 w-full object-cover object-center" />
-                <div className="absolute bottom-1 left-2 font-logo text-[8px] uppercase tracking-logo text-[#f6f7f5]/70">Hat — $88</div>
+                <div className="absolute bottom-1 left-2 font-logo text-[8px] uppercase tracking-logo text-[#f6f7f5]/70">Hat — $29</div>
               </button>
             </div>
 
@@ -269,14 +269,14 @@ function HWBTSection({ onAdd }: { onAdd: (item: { slug: string; name: string; pr
               <div className="flex items-center justify-between border-t border-[#f6f7f5]/10 pt-4">
                 <span className="font-logo text-xs uppercase tracking-logo text-[#f6f7f5]/40">Price</span>
                 <span className="font-display text-2xl text-[#f6f7f5]">
-                  {current.type === "Hat" ? "$88" : "$168"}
+                  {current.type === "Hat" ? "$29" : "$89"}
                 </span>
               </div>
               <button
                 onClick={() => onAdd({
                   slug: `hwbt-${current.label.toLowerCase()}`,
                   name: `HWBT ${current.label}`,
-                  price: current.type === "Hat" ? 88 : 168,
+                  price: current.type === "Hat" ? 29 : 89,
                   image: current.image,
                   isHat: current.type === "Hat",
                 })}
