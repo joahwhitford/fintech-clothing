@@ -1,7 +1,7 @@
 export type Product = {
   slug: string
   name: string
-  collection: "AI" | "Football" | "Music"
+  collection: "AI" | "Football" | "Music" | "Movies"
   price: string
   priceNum: number
   tagline: string
@@ -148,9 +148,63 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     limited: "Limited 200",
   },
+  // Movies Collection
+  {
+    slug: "american-founder",
+    name: "American Founder",
+    collection: "Movies",
+    price: "$158",
+    priceNum: 158,
+    tagline: "American Founder",
+    description:
+      "For the ones who watched The Social Network and took notes. Heavyweight washed tee, zero startup softness.",
+    image: "/movies-1.png",
+    type: "Garment-washed heavyweight tee",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+  },
+  {
+    slug: "harry-pitcher",
+    name: "Harry Pitcher",
+    collection: "Movies",
+    price: "$148",
+    priceNum: 148,
+    tagline: "Harry Pitcher",
+    description:
+      "You're a founder, Harry. 420gsm washed cotton for the chosen ones who raise their Series A before 30.",
+    image: "/movies-2.png",
+    type: "Washed black boxy tee",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+  },
+  {
+    slug: "happy-feet",
+    name: "Happy Feet",
+    collection: "Movies",
+    price: "$168",
+    priceNum: 168,
+    tagline: "Happy Feet",
+    description:
+      "When the wire hits and your feet can't stop moving. Garment-dyed, pre-shrunk, structurally sound.",
+    image: "/movies-3.png",
+    type: "Garment-dyed oversized tee",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+  },
+  {
+    slug: "manhattan-emperor",
+    name: "Manhattan Emperor",
+    collection: "Movies",
+    price: "$228",
+    priceNum: 228,
+    tagline: "Manhattan Emperor",
+    description:
+      "The city is the empire. Italian fleece crewneck for downtown operators who run their block like a fund.",
+    image: "/movies-4.png",
+    type: "Italian fleece crewneck",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    limited: "Limited 150",
+  },
 ]
 
-export const COLLECTIONS = ["AI", "Football", "Music"] as const
+export const COLLECTIONS = ["AI", "Football", "Music", "Movies"] as const
 export type Collection = (typeof COLLECTIONS)[number]
 
 export const collectionMeta: Record<
@@ -171,6 +225,11 @@ export const collectionMeta: Record<
     copy:
       "Studio-weight essentials for operators who run music like a capital allocation problem.",
     stat: "LBLE +22.1%",
+  },
+  Movies: {
+    copy:
+      "Cinematic references, heavyweight cotton. For people who quote films in pitch decks.",
+    stat: "FILM +14.6%",
   },
 }
 
