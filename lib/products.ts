@@ -175,33 +175,6 @@ export const products: Product[] = [
     type: "Washed black boxy tee",
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
   },
-  {
-    slug: "happy-feet",
-    name: "Happy Feet",
-    collection: "Movies",
-    price: "$79",
-    priceNum: 79,
-    tagline: "Happy Feet",
-    description:
-      "When the wire hits and your feet can't stop moving. Garment-dyed, pre-shrunk, structurally sound.",
-    image: "/movies-3.png",
-    type: "Garment-dyed oversized tee",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
-  },
-  {
-    slug: "manhattan-emperor",
-    name: "Manhattan Emperor",
-    collection: "Movies",
-    price: "$79",
-    priceNum: 79,
-    tagline: "Manhattan Emperor",
-    description:
-      "The city is the empire. Italian fleece crewneck for downtown operators who run their block like a fund.",
-    image: "/movies-4.png",
-    type: "Italian fleece crewneck",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
-    limited: "Limited 150",
-  },
 ]
 
 export const COLLECTIONS = ["AI", "Football", "Music", "Movies"] as const
