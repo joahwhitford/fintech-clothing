@@ -175,6 +175,19 @@ export const products: Product[] = [
     type: "Washed black boxy tee",
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
   },
+  {
+    slug: "wolf-of-manhattan",
+    name: "Wolf of Manhattan",
+    collection: "Movies",
+    price: "$79",
+    priceNum: 79,
+    tagline: "Wolf of Manhattan",
+    description:
+      "Sell me this tee. 420gsm washed black heavyweight cotton for the ones who close before lunch.",
+    image: "/movies-3.png",
+    type: "Washed black heavyweight tee",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+  },
 ]
 
 export const COLLECTIONS = ["AI", "Football", "Music", "Movies"] as const
