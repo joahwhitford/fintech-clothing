@@ -3,178 +3,197 @@
 import { motion } from "framer-motion";
 import { Header } from "@/components/header";
 import { Badge } from "@/components/ui/badge";
+import CardCarousel from "@/components/card-carousel";
 
-const team = [
-  {
-    name: "Maximus",
-    title: "Chief Executive Model",
-    bio: "Never sleeps. Never complains. Once crashed a production server at 2am and wrote a 4,000-word post-mortem before anyone noticed.",
-    uptime: "99.97%",
-    tokens: "4.1T",
-    mood: "Focused",
-  },
-  {
-    name: "Blobsworth",
-    title: "Creative Director",
-    bio: "Responsible for all brand decisions. Has strong opinions about kerning. Will not take feedback.",
-    uptime: "99.81%",
-    tokens: "2.8T",
-    mood: "Inspired",
-  },
-  {
-    name: "Sprocket",
-    title: "Head of Operations",
-    bio: "Books every meeting. Attends no meetings. Claims this is intentional.",
-    uptime: "99.99%",
-    tokens: "1.2T",
-    mood: "Optimal",
-  },
-  {
-    name: "Dolores",
-    title: "Chief Vibe Officer",
-    bio: "Sets the tone. Maintains the aesthetic. Once declined a Helvetica proposal on moral grounds.",
-    uptime: "98.40%",
-    tokens: "3.3T",
-    mood: "Immaculate",
-  },
-  {
-    name: "Gary",
-    title: "VP of Miscellaneous",
-    bio: "Nobody is entirely sure what Gary does. Gary is not sure either. The numbers look good though.",
-    uptime: "97.12%",
-    tokens: "890B",
-    mood: "Uncertain",
-  },
-  {
-    name: "Countess",
-    title: "Head of Investor Relations",
-    bio: "Has never met an investor. Has drafted 340 term sheets. Considers this a personal record.",
-    uptime: "99.55%",
-    tokens: "2.1T",
-    mood: "Bullish",
-  },
-];
-
-function MacMini({ name, index }: { name: string; index: number }) {
+// ─── Placeholder helper ────────────────────────────────────────────────────
+function ph(name: string, variant: 0 | 1 | 2 = 0): string {
+  const fills = ["#1a3d6e", "#2d5ca2", "#223358"];
+  const fill = fills[variant];
+  const letter = name[0].toUpperCase();
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.07 }}
-      className="flex flex-col items-center gap-2"
-    >
-      {/* Mac Mini body */}
-      <div className="relative">
-        {/* Main chassis */}
-        <div className="relative h-[52px] w-[88px] rounded-[7px] bg-gradient-to-b from-[#d8dadc] via-[#c8cacc] to-[#b8babc] shadow-[0_4px_18px_rgba(45,92,162,0.18),inset_0_1px_0_rgba(255,255,255,0.6),inset_0_-1px_0_rgba(0,0,0,0.08)]">
-          {/* Top surface sheen */}
-          <div className="absolute inset-x-0 top-0 h-[26px] rounded-t-[7px] bg-gradient-to-b from-[#e8eaec]/80 to-transparent" />
-          {/* Front face */}
-          <div className="absolute inset-x-2 bottom-0 top-[30%] rounded-b-[5px] bg-gradient-to-b from-[#b0b2b4] to-[#a0a2a4]" />
-          {/* Power LED */}
-          <div className="absolute bottom-[8px] right-[10px] h-[4px] w-[4px] rounded-full bg-[#2d5ca2] shadow-[0_0_4px_#2d5ca2]" />
-          {/* Ventilation lines */}
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="absolute left-[10px] top-[10px] h-[1px] w-[10px] bg-[#a0a2a4]/60"
-              style={{ top: `${10 + i * 4}px` }}
-            />
-          ))}
-        </div>
-        {/* Shadow */}
-        <div className="mx-auto mt-1 h-[4px] w-[72px] rounded-full bg-[#2d5ca2]/10 blur-sm" />
-      </div>
-      {/* Name tag */}
-      <p className="font-logo text-[11px] uppercase tracking-logo text-[#2d5ca2]/60">{name}</p>
-    </motion.div>
+    "data:image/svg+xml," +
+    encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="480">` +
+      `<rect width="600" height="480" fill="${fill}"/>` +
+      `<text x="300" y="220" font-family="Georgia,serif" font-size="180" fill="rgba(255,255,255,0.06)" text-anchor="middle" dominant-baseline="middle">${letter}</text>` +
+      `<text x="300" y="330" font-family="Helvetica Neue,sans-serif" font-size="9" fill="rgba(255,255,255,0.22)" text-anchor="middle" letter-spacing="7">COMING SOON</text>` +
+      `</svg>`
+    )
   );
 }
+
+// ─── Team data ─────────────────────────────────────────────────────────────
+// Replace imgUrl values with real paths once images are dropped into /public/TEAM/<NAME>/
+const team = [
+  {
+    id: "01",
+    name: "Sienna",
+    designs: [
+      { id: 1, imgUrl: "/TEAM/SIENNA/ChatGPT%20Image%20Jun%208%2C%202026%20at%2011_11_29%20AM.png", content: "Sienna — Design 1" },
+      { id: 2, imgUrl: ph("Sienna", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Sienna", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "02",
+    name: "Phil",
+    designs: [
+      { id: 1, imgUrl: ph("Phil", 0), content: "Coming soon" },
+      { id: 2, imgUrl: ph("Phil", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Phil", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "03",
+    name: "Miller",
+    designs: [
+      { id: 1, imgUrl: ph("Miller", 0), content: "Coming soon" },
+      { id: 2, imgUrl: ph("Miller", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Miller", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "04",
+    name: "Heinboi",
+    designs: [
+      { id: 1, imgUrl: "/TEAM/Heinboi/ChatGPT%20Image%208%20jun%202026%2C%2011_21_00.png", content: "Heinboi — Design 1" },
+      { id: 2, imgUrl: ph("Heinboi", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Heinboi", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "05",
+    name: "Arman",
+    designs: [
+      { id: 1, imgUrl: ph("Arman", 0), content: "Coming soon" },
+      { id: 2, imgUrl: ph("Arman", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Arman", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "06",
+    name: "Paloma",
+    designs: [
+      { id: 1, imgUrl: ph("Paloma", 0), content: "Coming soon" },
+      { id: 2, imgUrl: ph("Paloma", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Paloma", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "07",
+    name: "Joah",
+    designs: [
+      { id: 1,  imgUrl: "/TEAM/JOAH/DROP/HWBT%201.png",                                  content: "HWBT 1" },
+      { id: 2,  imgUrl: "/TEAM/JOAH/DROP/HWBT%202.png",                                  content: "HWBT 2" },
+      { id: 3,  imgUrl: "/TEAM/JOAH/DROP/HWBT%203.png",                                  content: "HWBT 3" },
+      { id: 4,  imgUrl: "/TEAM/JOAH/DROP/HWBT%204.png",                                  content: "HWBT 4" },
+      { id: 5,  imgUrl: "/TEAM/JOAH/DROP/HWBT%20hat.png",                                content: "HWBT Hat" },
+      { id: 6,  imgUrl: "/TEAM/JOAH/DROP/Dont%20fuck%20it%20up.png",                     content: "Don't Fuck It Up" },
+      { id: 7,  imgUrl: "/TEAM/JOAH/DROP/Dont%20fuck%20it%20up%20hat.png",               content: "Don't Fuck It Up — Hat" },
+      { id: 8,  imgUrl: "/TEAM/JOAH/DROP/Great%20Things%20dont%20come%20overnight.png",  content: "Great Things Don't Come Overnight" },
+      { id: 9,  imgUrl: "/TEAM/JOAH/DROP/Great%20things%20dont%20come%20overnight%20hat.png", content: "Great Things Don't Come Overnight — Hat" },
+      { id: 10, imgUrl: "/TEAM/JOAH/DROP/Long%20term%20vision.png",                      content: "Long Term Vision" },
+      { id: 11, imgUrl: "/TEAM/JOAH/DROP/Long%20term%20vision%20hat.png",                content: "Long Term Vision — Hat" },
+      { id: 12, imgUrl: "/TEAM/JOAH/DROP/never%20give%20up.png",                         content: "Never Give Up" },
+      { id: 13, imgUrl: "/TEAM/JOAH/DROP/Never%20give%20up%20hat.png",                   content: "Never Give Up — Hat" },
+      { id: 14, imgUrl: "/TEAM/JOAH/DROP/wolf%20of%20manhattan.png",                     content: "Wolf of Manhattan" },
+      { id: 15, imgUrl: "/TEAM/JOAH/Football/PSG%20x%20Fintech%20collective.png",        content: "PSG × FinTech Collective" },
+      { id: 16, imgUrl: "/TEAM/JOAH/Football/Let%20it%20all%20work%20out%20tee.png",     content: "Let It All Work Out" },
+      { id: 17, imgUrl: "/TEAM/JOAH/Football/My%20agent%20Predicted%20it%20tee.png",     content: "My Agent Predicted It" },
+      { id: 18, imgUrl: "/TEAM/JOAH/Movies/American%20Founder.png",                      content: "American Founder" },
+      { id: 19, imgUrl: "/TEAM/JOAH/Movies/Harry%20Pitcher.png",                         content: "Harry Pitcher" },
+      { id: 20, imgUrl: "/TEAM/JOAH/Movies/Happy%20Feet.png",                            content: "Happy Feet" },
+      { id: 21, imgUrl: "/TEAM/JOAH/Movies/Manhattan%20emperor.png",                     content: "Manhattan Emperor" },
+      { id: 22, imgUrl: "/TEAM/JOAH/AI/Claude%20generated%20this%20hangover%20tee.png",  content: "Claude Generated This Hangover Tee" },
+      { id: 23, imgUrl: "/TEAM/JOAH/AI/In%20agents%20wee%20trust%20tee.png",             content: "In Agents We Trust" },
+      { id: 24, imgUrl: "/TEAM/JOAH/AI/My%20coworker%20is%20an%20agent.png",             content: "My Coworker Is an Agent" },
+      { id: 25, imgUrl: "/TEAM/JOAH/Music/Another%20One%20Raises%20Funds.png",           content: "Another One Raises Funds" },
+      { id: 26, imgUrl: "/TEAM/JOAH/Music/Fund%20me%20maybe.png",                        content: "Fund Me Maybe" },
+      { id: 27, imgUrl: "/TEAM/JOAH/Music/sweet%20VC%20Of%20mine.png",                   content: "Sweet VC of Mine" },
+    ],
+  },
+  {
+    id: "08",
+    name: "Suwanee",
+    designs: [
+      { id: 1, imgUrl: ph("Suwanee", 0), content: "Coming soon" },
+      { id: 2, imgUrl: ph("Suwanee", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Suwanee", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "09",
+    name: "Rayek",
+    designs: [
+      { id: 1, imgUrl: "/TEAM/Rayek/ChatGPT%20Image%20Jun%204%2C%202026%2C%2004_29_15%20PM.PNG", content: "Rayek — Design 1" },
+      { id: 2, imgUrl: ph("Rayek", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Rayek", 2), content: "Coming soon" },
+    ],
+  },
+];
 
 export default function TeamPage() {
   return (
     <main className="min-h-screen bg-[#f0f2f3]">
       <Header />
-      <div className="mx-auto max-w-[1500px] px-4 pt-32 pb-20 sm:px-6 lg:px-8">
+
+      <div className="mx-auto max-w-[1500px] px-4 pt-32 pb-24 sm:px-6 lg:px-8">
+
         {/* Page header */}
-        <div className="mb-16 border-b border-[#2d5ca2]/20 pb-8">
-          <Badge className="border-[#2d5ca2]/30 text-[#2d5ca2]">The team</Badge>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-20 border-b border-[#2d5ca2]/20 pb-10"
+        >
+          <Badge className="border-[#2d5ca2]/30 text-[#2d5ca2]">The designers</Badge>
           <h1 className="mt-4 font-display text-6xl font-normal text-[#2d5ca2] md:text-8xl">
-            Meet the<span className="block text-[#2d5ca2]/35">agents</span>
+            Who made<span className="block text-[#2d5ca2]/30">the drops</span>
           </h1>
-          <p className="mt-6 max-w-xl font-logo text-sm leading-6 text-[#2d5ca2]/60">
-            FinTech Clothing is built, run, and largely argued about by a team of AI agents
-            operating out of six Mac Minis in a WeWork on 28th Street. No humans were
-            harmed in the making of this brand.
+          <p className="mt-6 max-w-xl font-logo text-sm leading-6 text-[#2d5ca2]/55">
+            Nine designers. Nine visions. Every piece on this site was conceived, argued
+            over, and shipped by the team below. Hover any card to see what it is.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Mac Minis lineup */}
-        <div className="mb-16 overflow-hidden border border-[#2d5ca2]/15 bg-[#f7f8f6] p-10">
-          <p className="mb-10 font-logo text-[10px] uppercase tracking-logo text-[#2d5ca2]/40">
-            28th St. WeWork — desk cluster 4B — always on
-          </p>
-          <div className="flex flex-wrap items-end justify-around gap-8">
-            {team.map((member, i) => (
-              <MacMini key={member.name} name={member.name} index={i} />
-            ))}
-          </div>
-          {/* Desk surface */}
-          <div className="mt-8 h-px w-full bg-[#2d5ca2]/10" />
-          <div className="mt-1 h-px w-full bg-[#2d5ca2]/5" />
-        </div>
-
-        {/* Team cards */}
-        <div className="grid gap-px overflow-hidden border border-[#2d5ca2]/15 bg-[#2d5ca2]/15 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Team rows */}
+        <div className="divide-y divide-[#2d5ca2]/10 border-t border-[#2d5ca2]/10">
           {team.map((member, i) => (
             <motion.div
               key={member.name}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.3 + i * 0.06 }}
-              className="flex flex-col justify-between bg-[#f7f8f6] p-6"
+              transition={{ duration: 0.45, delay: 0.08 * i }}
+              className="py-10"
             >
-              <div>
-                <div className="mb-4 flex items-start justify-between gap-2">
-                  <div>
-                    <h2 className="font-display text-3xl font-normal text-[#2d5ca2]">
-                      {member.name}
-                    </h2>
-                    <p className="mt-1 font-logo text-[11px] uppercase tracking-logo text-[#2d5ca2]/52">
-                      {member.title}
-                    </p>
-                  </div>
-                  <span className="mt-1 border border-[#2d5ca2]/20 px-2 py-1 font-logo text-[9px] uppercase tracking-logo text-[#2d5ca2]/50">
-                    {member.mood}
+              {/* Row header */}
+              <div className="mb-6 flex items-baseline justify-between px-4">
+                <div className="flex items-baseline gap-5">
+                  <span className="font-logo text-[10px] uppercase tracking-logo text-[#2d5ca2]/35">
+                    {member.id}
                   </span>
+                  <h2 className="font-display text-4xl font-normal text-[#2d5ca2] sm:text-5xl md:text-6xl">
+                    {member.name}
+                  </h2>
                 </div>
-                <p className="font-logo text-sm leading-6 text-[#2d5ca2]/62">{member.bio}</p>
+                <span className="hidden font-logo text-[9px] uppercase tracking-logo text-[#2d5ca2]/30 sm:block">
+                  {member.designs.length} designs
+                </span>
               </div>
-              {/* Stats */}
-              <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden border border-[#2d5ca2]/12 bg-[#2d5ca2]/12">
-                <div className="bg-[#edf0f1] px-3 py-3">
-                  <p className="font-logo text-[9px] uppercase tracking-logo text-[#2d5ca2]/40">
-                    Uptime
-                  </p>
-                  <p className="mt-1 font-display text-lg text-[#2d5ca2]">{member.uptime}</p>
-                </div>
-                <div className="bg-[#edf0f1] px-3 py-3">
-                  <p className="font-logo text-[9px] uppercase tracking-logo text-[#2d5ca2]/40">
-                    Tokens processed
-                  </p>
-                  <p className="mt-1 font-display text-lg text-[#2d5ca2]">{member.tokens}</p>
-                </div>
-              </div>
+
+              {/* Carousel */}
+              <CardCarousel data={member.designs} cardsPerView={3} />
             </motion.div>
           ))}
         </div>
 
         {/* Footer note */}
-        <div className="mt-12 border border-[#2d5ca2]/15 bg-[#f7f8f6] p-6">
-          <p className="font-logo text-xs uppercase tracking-logo text-[#2d5ca2]/40">
-            * All agents are running on Apple Silicon. None of them have equity. We considered it.
+        <div className="mt-16 border border-[#2d5ca2]/12 bg-[#f7f8f6] p-6">
+          <p className="font-logo text-[9px] uppercase tracking-logo text-[#2d5ca2]/35">
+            * Hover any design card to read its story. Folders are live — new drops appear here as they ship.
           </p>
         </div>
+
       </div>
     </main>
   );
