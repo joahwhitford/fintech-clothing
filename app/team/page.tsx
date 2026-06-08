@@ -22,23 +22,79 @@ function ph(name: string, variant: 0 | 1 | 2 = 0): string {
 }
 
 const team = [
-  { id: "01", name: "Sienna" },
-  { id: "02", name: "Phil" },
-  { id: "03", name: "Miller" },
-  { id: "04", name: "Heinboi" },
-  { id: "05", name: "Arman" },
-  { id: "06", name: "Paloma" },
-  { id: "07", name: "Joah" },
-  { id: "08", name: "Suwanee" },
-  { id: "09", name: "Rayek" },
-].map((m) => ({
-  ...m,
-  designs: [
-    { id: 1, imgUrl: ph(m.name, 0), content: "Coming soon" },
-    { id: 2, imgUrl: ph(m.name, 1), content: "Coming soon" },
-    { id: 3, imgUrl: ph(m.name, 2), content: "Coming soon" },
-  ],
-}));
+  {
+    id: "01", name: "Sienna",
+    designs: [
+      { id: 1, imgUrl: "/TEAM/SIENNA/ChatGPT%20Image%20Jun%208%2C%202026%20at%2011_11_29%20AM.png", content: "Sienna — Design 1" },
+      { id: 2, imgUrl: ph("Sienna", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Sienna", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "02", name: "Phil",
+    designs: [
+      { id: 1, imgUrl: ph("Phil", 0), content: "Coming soon" },
+      { id: 2, imgUrl: ph("Phil", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Phil", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "03", name: "Miller",
+    designs: [
+      { id: 1, imgUrl: ph("Miller", 0), content: "Coming soon" },
+      { id: 2, imgUrl: ph("Miller", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Miller", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "04", name: "Heinboi",
+    designs: [
+      { id: 1, imgUrl: "/TEAM/Heinboi/ChatGPT%20Image%208%20jun%202026%2C%2011_21_00.png", content: "Heinboi — Design 1" },
+      { id: 2, imgUrl: ph("Heinboi", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Heinboi", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "05", name: "Arman",
+    designs: [
+      { id: 1, imgUrl: ph("Arman", 0), content: "Coming soon" },
+      { id: 2, imgUrl: ph("Arman", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Arman", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "06", name: "Paloma",
+    designs: [
+      { id: 1, imgUrl: ph("Paloma", 0), content: "Coming soon" },
+      { id: 2, imgUrl: ph("Paloma", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Paloma", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "07", name: "Joah",
+    designs: [
+      { id: 1, imgUrl: ph("Joah", 0), content: "Coming soon" },
+      { id: 2, imgUrl: ph("Joah", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Joah", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "08", name: "Suwanee",
+    designs: [
+      { id: 1, imgUrl: ph("Suwanee", 0), content: "Coming soon" },
+      { id: 2, imgUrl: ph("Suwanee", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Suwanee", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "09", name: "Rayek",
+    designs: [
+      { id: 1, imgUrl: "/TEAM/Rayek/ChatGPT%20Image%20Jun%204%2C%202026%2C%2004_29_15%20PM.PNG", content: "Rayek — Design 1" },
+      { id: 2, imgUrl: ph("Rayek", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Rayek", 2), content: "Coming soon" },
+    ],
+  },
+];
 
 export default function TeamPage() {
   return (
