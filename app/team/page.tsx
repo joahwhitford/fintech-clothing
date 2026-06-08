@@ -55,12 +55,8 @@ export default function TeamPage() {
         >
           <Badge className="border-[#2d5ca2]/30 text-[#2d5ca2]">The designers</Badge>
           <h1 className="mt-4 font-display text-6xl font-normal text-[#2d5ca2] md:text-8xl">
-            Who made<span className="block text-[#2d5ca2]/30">the drops</span>
+            The Team's<span className="block text-[#2d5ca2]/30">Designs & Collections</span>
           </h1>
-          <p className="mt-6 max-w-xl font-logo text-sm leading-6 text-[#2d5ca2]/55">
-            Nine designers. Nine visions. Every piece on this site was conceived, argued
-            over, and shipped by the team below. Hover any card to see what it is.
-          </p>
         </motion.div>
 
         <div className="divide-y divide-[#2d5ca2]/10 border-t border-[#2d5ca2]/10">
