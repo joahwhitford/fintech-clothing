@@ -27,7 +27,7 @@ const team = [
     designs: [
       { id: 1, imgUrl: "/TEAM/SIENNA/design-1.png", content: "Sienna — Design 1" },
       { id: 2, imgUrl: "/TEAM/SIENNA/design-2.png", content: "Sienna — Design 2" },
-      { id: 3, imgUrl: ph("Sienna", 2), content: "Coming soon" },
+      { id: 3, imgUrl: "/TEAM/SIENNA/design-3.png", content: "Sienna — Design 3" },
     ],
   },
   {
@@ -50,7 +50,7 @@ const team = [
     id: "04", name: "Heinboi",
     designs: [
       { id: 1, imgUrl: "/TEAM/Heinboi/design-1.png", content: "Heinboi — Design 1" },
-      { id: 2, imgUrl: ph("Heinboi", 1), content: "Coming soon" },
+      { id: 2, imgUrl: "/TEAM/Heinboi/design-2.png", content: "Heinboi — Design 2" },
       { id: 3, imgUrl: ph("Heinboi", 2), content: "Coming soon" },
     ],
   },
@@ -65,9 +65,12 @@ const team = [
   {
     id: "06", name: "Paloma",
     designs: [
-      { id: 1, imgUrl: ph("Paloma", 0), content: "Coming soon" },
-      { id: 2, imgUrl: ph("Paloma", 1), content: "Coming soon" },
-      { id: 3, imgUrl: ph("Paloma", 2), content: "Coming soon" },
+      { id: 1, imgUrl: "/TEAM/Paloma/design-1.png", content: "Paloma — Design 1" },
+      { id: 2, imgUrl: "/TEAM/Paloma/design-2.png", content: "Paloma — Design 2" },
+      { id: 3, imgUrl: "/TEAM/Paloma/design-3.png", content: "Paloma — Design 3" },
+      { id: 4, imgUrl: "/TEAM/Paloma/design-4.png", content: "Paloma — Design 4" },
+      { id: 5, imgUrl: "/TEAM/Paloma/design-5.png", content: "Paloma — Design 5" },
+      { id: 6, imgUrl: "/TEAM/Paloma/design-6.png", content: "Paloma — Design 6" },
     ],
   },
   {
@@ -81,9 +84,10 @@ const team = [
   {
     id: "08", name: "Suwanee",
     designs: [
-      { id: 1, imgUrl: ph("Suwanee", 0), content: "Coming soon" },
-      { id: 2, imgUrl: ph("Suwanee", 1), content: "Coming soon" },
-      { id: 3, imgUrl: ph("Suwanee", 2), content: "Coming soon" },
+      { id: 1, imgUrl: "/TEAM/Suwanee/design-1.png", content: "Summer Finance I" },
+      { id: 2, imgUrl: "/TEAM/Suwanee/design-2.png", content: "Summer Finance II" },
+      { id: 3, imgUrl: "/TEAM/Suwanee/design-3.png", content: "Summer Finance III" },
+      { id: 4, imgUrl: "/TEAM/Suwanee/design-4.png", content: "Summer Finance IV" },
     ],
   },
   {
