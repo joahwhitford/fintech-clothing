@@ -14,29 +14,29 @@ interface CardProps {
   cardsPerView?: number;
 }
 
+// ─── Lightbox — fully controlled, no internal index ───────────────────────
 function Lightbox({
   images,
-  startIndex,
+  index,
+  onPrev,
+  onNext,
   onClose,
 }: {
   images: CardData[];
-  startIndex: number;
+  index: number;
+  onPrev: () => void;
+  onNext: () => void;
   onClose: () => void;
 }) {
-  const [index, setIndex] = useState(startIndex);
-
-  const prev = useCallback(() => setIndex((i) => (i - 1 + images.length) % images.length), [images.length]);
-  const next = useCallback(() => setIndex((i) => (i + 1) % images.length), [images.length]);
-
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft") prev();
-      if (e.key === "ArrowRight") next();
+      if (e.key === "Escape")      onClose();
+      if (e.key === "ArrowLeft")   onPrev();
+      if (e.key === "ArrowRight")  onNext();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [onClose, prev, next]);
+  }, [onClose, onPrev, onNext]);
 
   return (
     <motion.div
@@ -47,31 +47,30 @@ function Lightbox({
       transition={{ duration: 0.2 }}
     >
       {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-[#080f1a]/92 backdrop-blur-sm"
-        onClick={onClose}
-      />
+      <div className="absolute inset-0 bg-[#080f1a]/92 backdrop-blur-sm" onClick={onClose} />
 
       {/* Image */}
-      <motion.div
-        key={index}
-        className="relative z-10 flex max-h-[90vh] max-w-[90vw] flex-col items-center"
-        initial={{ scale: 0.92, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.92, opacity: 0 }}
-        transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-      >
-        <img
-          src={images[index].imgUrl}
-          alt={images[index].content}
-          className="max-h-[80vh] max-w-[80vw] object-contain"
-        />
-        {images[index].content && images[index].content !== "Coming soon" && (
-          <p className="mt-4 font-logo text-[11px] uppercase tracking-logo text-white/40">
-            {images[index].content}
-          </p>
-        )}
-      </motion.div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={index}
+          className="relative z-10 flex max-h-[90vh] max-w-[90vw] flex-col items-center"
+          initial={{ scale: 0.94, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.94, opacity: 0 }}
+          transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
+        >
+          <img
+            src={images[index].imgUrl}
+            alt={images[index].content}
+            className="max-h-[80vh] max-w-[80vw] object-contain"
+          />
+          {images[index].content && images[index].content !== "Coming soon" && (
+            <p className="mt-4 font-logo text-[11px] uppercase tracking-logo text-white/40">
+              {images[index].content}
+            </p>
+          )}
+        </motion.div>
+      </AnimatePresence>
 
       {/* Close */}
       <button
@@ -81,34 +80,32 @@ function Lightbox({
         Close
       </button>
 
-      {/* Arrows — only if multiple images */}
+      {/* Arrows */}
       {images.length > 1 && (
         <>
           <button
-            onClick={prev}
-            className="absolute left-6 top-1/2 z-20 -translate-y-1/2 font-logo text-[11px] uppercase tracking-logo text-white/40 transition hover:text-white"
+            onClick={onPrev}
+            className="absolute left-4 top-1/2 z-20 -translate-y-1/2 bg-white/10 px-4 py-3 font-logo text-sm text-white/70 backdrop-blur-sm transition hover:bg-white/20 hover:text-white"
           >
             ←
           </button>
           <button
-            onClick={next}
-            className="absolute right-6 top-1/2 z-20 -translate-y-1/2 font-logo text-[11px] uppercase tracking-logo text-white/40 transition hover:text-white"
+            onClick={onNext}
+            className="absolute right-4 top-1/2 z-20 -translate-y-1/2 bg-white/10 px-4 py-3 font-logo text-sm text-white/70 backdrop-blur-sm transition hover:bg-white/20 hover:text-white"
           >
             →
           </button>
         </>
       )}
 
-      {/* Index indicator */}
+      {/* Dot indicators */}
       {images.length > 1 && (
         <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 gap-2">
           {images.map((_, i) => (
             <button
               key={i}
-              onClick={() => setIndex(i)}
-              className={`h-[3px] w-5 transition-all duration-300 ${
-                i === index ? "bg-white" : "bg-white/25"
-              }`}
+              onClick={() => { /* jump handled via index prop */ }}
+              className={`h-[3px] w-5 transition-all duration-300 ${i === index ? "bg-white" : "bg-white/25"}`}
             />
           ))}
         </div>
@@ -117,6 +114,7 @@ function Lightbox({
   );
 }
 
+// ─── Carousel ──────────────────────────────────────────────────────────────
 const CardCarousel = ({ data, showCarousel = true, cardsPerView = 3 }: CardProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSingleCard, setIsSingleCard] = useState(false);
@@ -130,7 +128,18 @@ const CardCarousel = ({ data, showCarousel = true, cardsPerView = 3 }: CardProps
 
   const cardWidth = 75 / cardsPerView;
 
-  const nextSlide = () => {
+  // Lightbox navigation — shared with carousel arrows when open
+  const lightboxPrev = useCallback(() => {
+    setLightboxIndex((i) => i === null ? null : (i - 1 + data.length) % data.length);
+  }, [data.length]);
+
+  const lightboxNext = useCallback(() => {
+    setLightboxIndex((i) => i === null ? null : (i + 1) % data.length);
+  }, [data.length]);
+
+  // Carousel slide — skips if lightbox is open
+  const nextSlide = useCallback(() => {
+    if (lightboxIndex !== null) { lightboxNext(); return; }
     if (isAnimating || !showCarousel || !data) return;
     if (data.length <= cardsPerView) return;
     setIsAnimating(true);
@@ -148,9 +157,10 @@ const CardCarousel = ({ data, showCarousel = true, cardsPerView = 3 }: CardProps
         }
       }, 500);
     }
-  };
+  }, [lightboxIndex, lightboxNext, isAnimating, showCarousel, data, cardsPerView, currentIndex, cardWidth]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
+    if (lightboxIndex !== null) { lightboxPrev(); return; }
     if (isAnimating || !showCarousel || !data) return;
     if (data.length <= cardsPerView) return;
     setIsAnimating(true);
@@ -162,26 +172,18 @@ const CardCarousel = ({ data, showCarousel = true, cardsPerView = 3 }: CardProps
       void containerRef.current.offsetWidth;
       containerRef.current.style.transition = "transform 500ms ease";
       containerRef.current.style.transform = "translateX(0)";
-      setTimeout(() => {
-        setIsAnimating(false);
-      }, 500);
+      setTimeout(() => setIsAnimating(false), 500);
     }
-  };
+  }, [lightboxIndex, lightboxPrev, isAnimating, showCarousel, data, cardsPerView, currentIndex, cardWidth]);
 
   const getVisibleCards = () => {
     if (!showCarousel || !data) return data || [];
-    const visibleCards = [];
-    const totalCards = data.length;
+    const result = [];
     for (let i = 0; i < cardsPerView + 1; i++) {
-      const index = (currentIndex + i) % totalCards;
-      visibleCards.push({ ...data[index], _visiblePos: i });
+      const idx = (currentIndex + i) % data.length;
+      result.push({ ...data[idx], _pos: i });
     }
-    return visibleCards;
-  };
-
-  // Find the real index of a visible card in the original data array
-  const getRealIndex = (visiblePos: number) => {
-    return (currentIndex + visiblePos) % data.length;
+    return result;
   };
 
   if (!data || data.length === 0) return null;
@@ -192,7 +194,9 @@ const CardCarousel = ({ data, showCarousel = true, cardsPerView = 3 }: CardProps
         {lightboxIndex !== null && (
           <Lightbox
             images={data}
-            startIndex={lightboxIndex}
+            index={lightboxIndex}
+            onPrev={lightboxPrev}
+            onNext={lightboxNext}
             onClose={() => setLightboxIndex(null)}
           />
         )}
@@ -206,7 +210,7 @@ const CardCarousel = ({ data, showCarousel = true, cardsPerView = 3 }: CardProps
                 onClick={prevSlide}
                 className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-[#2d5ca2] text-white px-3 py-2 hover:bg-[#1e4080] transition-all duration-300 font-logo text-xs tracking-logo"
                 disabled={isAnimating}
-                aria-label="Previous slide"
+                aria-label="Previous"
               >
                 ←
               </button>
@@ -214,7 +218,7 @@ const CardCarousel = ({ data, showCarousel = true, cardsPerView = 3 }: CardProps
                 onClick={nextSlide}
                 className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-[#2d5ca2] text-white px-3 py-2 hover:bg-[#1e4080] transition-all duration-300 font-logo text-xs tracking-logo"
                 disabled={isAnimating}
-                aria-label="Next slide"
+                aria-label="Next"
               >
                 →
               </button>
@@ -227,18 +231,18 @@ const CardCarousel = ({ data, showCarousel = true, cardsPerView = 3 }: CardProps
               className="flex"
               style={{
                 transform: "translateX(0)",
-                width: showCarousel ? `${(cardsPerView + 1) * 100 / cardsPerView}%` : '100%'
+                width: showCarousel ? `${(cardsPerView + 1) * 100 / cardsPerView}%` : '100%',
               }}
             >
               {getVisibleCards().map((card, idx) => {
-                const realIndex = getRealIndex((card as any)._visiblePos ?? idx);
+                const realIndex = (currentIndex + ((card as any)._pos ?? idx)) % data.length;
                 return (
                   <div
-                    key={`card-${currentIndex}-${idx}`}
+                    key={`${currentIndex}-${idx}`}
                     style={{
                       width: showCarousel
                         ? `${100 / (cardsPerView + 1)}%`
-                        : `${100 / Math.min(cardsPerView, data.length)}%`
+                        : `${100 / Math.min(cardsPerView, data.length)}%`,
                     }}
                     className="px-2"
                   >
@@ -253,7 +257,7 @@ const CardCarousel = ({ data, showCarousel = true, cardsPerView = 3 }: CardProps
                           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]"
                         />
                       </div>
-                      {/* Shine sweep on hover */}
+                      {/* Shine sweep */}
                       <div className="pointer-events-none absolute inset-0 translate-x-[-100%] skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/12 to-transparent transition-transform duration-700 group-hover:translate-x-[200%]" />
                     </div>
                   </div>
