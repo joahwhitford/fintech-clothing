@@ -23,17 +23,18 @@ function ph(name: string, variant: 0 | 1 | 2 = 0): string {
 
 const team = [
   {
-    id: "01", name: "Sienna",
+    id: "01", name: "Siena",
     designs: [
-      { id: 1, imgUrl: "/TEAM/SIENNA/design-1.png", content: "Sienna — Design 1" },
-      { id: 2, imgUrl: "/TEAM/SIENNA/design-2.png", content: "Sienna — Design 2" },
-      { id: 3, imgUrl: "/TEAM/SIENNA/design-3.png", content: "Sienna — Design 3" },
+      { id: 1, imgUrl: "/TEAM/SIENNA/design-1.png", content: "Siena — Design 1" },
+      { id: 2, imgUrl: "/TEAM/SIENNA/design-2.png", content: "Siena — Design 2" },
+      { id: 3, imgUrl: "/TEAM/SIENNA/design-3.png", content: "Siena — Design 3" },
+      { id: 4, imgUrl: "/TEAM/SIENNA/design-4.png", content: "Siena — Design 4" },
     ],
   },
   {
     id: "02", name: "Phil",
     designs: [
-      { id: 1, imgUrl: ph("Phil", 0), content: "Coming soon" },
+      { id: 1, imgUrl: "/TEAM/Phil/design-1.png", content: "Phil — Design 1" },
       { id: 2, imgUrl: ph("Phil", 1), content: "Coming soon" },
       { id: 3, imgUrl: ph("Phil", 2), content: "Coming soon" },
     ],
@@ -49,8 +50,8 @@ const team = [
   {
     id: "04", name: "Heinboi",
     designs: [
-      { id: 1, imgUrl: "/TEAM/Heinboi/design-1.png", content: "Heinboi — Design 1" },
-      { id: 2, imgUrl: "/TEAM/Heinboi/design-2.png", content: "Heinboi — Design 2" },
+      { id: 1, imgUrl: "/TEAM/Heinboi/design-2.png", content: "Heinboi — Design 1" },
+      { id: 2, imgUrl: ph("Heinboi", 1), content: "Coming soon" },
       { id: 3, imgUrl: ph("Heinboi", 2), content: "Coming soon" },
     ],
   },
@@ -91,7 +92,15 @@ const team = [
     ],
   },
   {
-    id: "09", name: "Rayek",
+    id: "09", name: "Caroline",
+    designs: [
+      { id: 1, imgUrl: "/TEAM/Caroline/design-1.jpg", content: "Caroline — Design 1" },
+      { id: 2, imgUrl: ph("Caroline", 1), content: "Coming soon" },
+      { id: 3, imgUrl: ph("Caroline", 2), content: "Coming soon" },
+    ],
+  },
+  {
+    id: "10", name: "Rayek",
     designs: [
       { id: 1, imgUrl: "/TEAM/Rayek/design-1.png", content: "Rayek — Design 1" },
       { id: 2, imgUrl: ph("Rayek", 1), content: "Coming soon" },
