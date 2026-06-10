@@ -4,27 +4,19 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PASSWORD = "STAYMAGICAL";
-const STORAGE_KEY = "ftc_access";
 
 export function PasswordGate({ children }: { children: React.ReactNode }) {
-  const [unlocked, setUnlocked] = useState<boolean | null>(null);
+  const [unlocked, setUnlocked] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    setUnlocked(sessionStorage.getItem(STORAGE_KEY) === "1");
+    setTimeout(() => inputRef.current?.focus(), 400);
   }, []);
-
-  useEffect(() => {
-    if (unlocked === false) {
-      setTimeout(() => inputRef.current?.focus(), 400);
-    }
-  }, [unlocked]);
 
   const attempt = () => {
     if (value.trim().toUpperCase() === PASSWORD) {
-      sessionStorage.setItem(STORAGE_KEY, "1");
       setUnlocked(true);
     } else {
       setError(true);
@@ -32,9 +24,6 @@ export function PasswordGate({ children }: { children: React.ReactNode }) {
       setTimeout(() => setError(false), 1200);
     }
   };
-
-  // Still checking storage
-  if (unlocked === null) return null;
 
   if (unlocked) return <>{children}</>;
 
