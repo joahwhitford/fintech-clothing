@@ -11,7 +11,6 @@ const navLinks = [
   { href: "/drop", label: "Drop" },
   { href: "/collections", label: "Collections" },
   { href: "/team", label: "Team" },
-  { href: "/editorial", label: "Editorial" },
 ];
 
 export function Header() {
