@@ -42,8 +42,8 @@ const team = [
   {
     id: "03", name: "Miller",
     designs: [
-      { id: 1, imgUrl: ph("Miller", 0), content: "Coming soon" },
-      { id: 2, imgUrl: ph("Miller", 1), content: "Coming soon" },
+      { id: 1, imgUrl: "/TEAM/Miller/design-1.jpg", content: "Miller — Design 1" },
+      { id: 2, imgUrl: "/TEAM/Miller/design-2.jpg", content: "Miller — Design 2" },
       { id: 3, imgUrl: ph("Miller", 2), content: "Coming soon" },
     ],
   },
@@ -75,14 +75,6 @@ const team = [
     ],
   },
   {
-    id: "07", name: "Joah",
-    designs: [
-      { id: 1, imgUrl: ph("Joah", 0), content: "Coming soon" },
-      { id: 2, imgUrl: ph("Joah", 1), content: "Coming soon" },
-      { id: 3, imgUrl: ph("Joah", 2), content: "Coming soon" },
-    ],
-  },
-  {
     id: "08", name: "Suwanee",
     designs: [
       { id: 1, imgUrl: "/TEAM/Suwanee/design-1.png", content: "Summer Finance I" },
@@ -92,7 +84,7 @@ const team = [
     ],
   },
   {
-    id: "09", name: "Caroline",
+    id: "08", name: "Caroline",
     designs: [
       { id: 1, imgUrl: "/TEAM/Caroline/design-1.jpg", content: "Caroline — Design 1" },
       { id: 2, imgUrl: ph("Caroline", 1), content: "Coming soon" },
@@ -100,11 +92,11 @@ const team = [
     ],
   },
   {
-    id: "10", name: "Rayek",
+    id: "09", name: "Rayek",
     designs: [
       { id: 1, imgUrl: "/TEAM/Rayek/design-1.png", content: "Rayek — Design 1" },
-      { id: 2, imgUrl: ph("Rayek", 1), content: "Coming soon" },
-      { id: 3, imgUrl: ph("Rayek", 2), content: "Coming soon" },
+      { id: 2, imgUrl: "/TEAM/Rayek/design-2.png", content: "Rayek — Design 2" },
+      { id: 3, imgUrl: "/TEAM/Rayek/design-3.png", content: "Rayek — Design 3" },
     ],
   },
 ];
